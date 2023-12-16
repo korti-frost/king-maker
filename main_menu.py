@@ -31,12 +31,28 @@ def main_menu_events(screen, buttons, button_texts):
                     print(f"{button_texts[i]} button clicked!")
     return True, screen, buttons, button_texts
 
-def main_menu_draw(screen, buttons):
+def main_menu_draw(screen, buttons, button_texts):
     # Draw the background
     screen.fill((0, 0, 0))
-    # Draw the buttons
-    for button in buttons:
+
+    # Create a font object
+    font = pygame.font.Font(None, 32)  # You can adjust the size as needed
+
+    # Draw the buttons and their text
+    for i, button in enumerate(buttons):
         pygame.draw.rect(screen, (255, 0, 0), button)
+
+        # Render the text
+        text_surface = font.render(button_texts[i], True, (255, 255, 255))  # White text
+
+        # Get the center of the button
+        button_center = (button.x + button.width / 2, button.y + button.height / 2)
+
+        # Get the top-left position of the text surface so it's centered on the button
+        text_pos = (button_center[0] - text_surface.get_width() / 2, button_center[1] - text_surface.get_height() / 2)
+
+        # Draw the text on the screen
+        screen.blit(text_surface, text_pos)
 
     pygame.display.flip()  # Update the display
 
@@ -52,4 +68,4 @@ def main_menu(screen):
         running, screen, buttons, button_texts = main_menu_events(screen, buttons, button_texts)
 
         # Draw the background and buttons
-        main_menu_draw(screen, buttons)
+        main_menu_draw(screen, buttons, button_texts)
