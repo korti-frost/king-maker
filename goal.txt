@@ -1,0 +1,98 @@
+Resources:
+Primary Resources:
+Gold (Currency): Gold can serve as the primary currency for purchasing various items, buildings, military units, and engaging in trade.
+Population (Labor): Population represents the workforce available for various tasks, such as manning buildings, working in fields, and serving in the military. It can be used as a resource to allocate for different purposes within the kingdom.
+Influence (Soft Power): Influence represents the player's ability to exert control and sway others. It can be accumulated through diplomatic actions, alliances, favors, or fulfilling certain objectives. Influence can be used to gain support, negotiate favorable deals, or affect the decisions of other characters.
+Secondary Resources:
+Wood (Construction Material): Wood can be used as a resource for constructing buildings, fortifications, and siege equipment. It can be acquired through logging, trade, or as a result of certain events.
+Stone (Construction Material): Stone serves as a durable construction material for more robust structures, fortresses, and defensive walls. It can be obtained from quarries, mined from specific locations, or acquired through trade.
+Iron (Specialized Material): Iron represents a valuable resource used for specialized constructions, weapon production, and military upgrades. It can be acquired from mines, conquered territories, or through trade.
+Food (Sustenance): Food is essential for sustaining the population and military forces. It can be produced through farming, fishing, hunting, or trade. Managing food resources is crucial for preventing famine and maintaining a well-fed and productive population.
+
+
+Character:
+Attributes: Include the attributes Martial, Diplomacy, Intrigue, Stewardship, Piety, Learning, and Magic for the player's character. These attributes will influence various aspects of the gameplay, such as combat effectiveness, diplomatic negotiations, intrigue actions, realm management, and magical abilities.
+Trait System: Design a trait system where certain actions, events, or choices can grant the player's character specific traits. These traits should provide bonuses or penalties to the character's attributes. For example, a "Brave" trait may increase the character's Martial attribute, while a "Deceitful" trait may boost their Intrigue attribute.
+Titles and Accomplishments: Introduce a system where the player's character can earn titles after achieving significant milestones or great acts within the quest. Titles can confer additional bonuses or special abilities. Consider tying the acquisition of titles to specific accomplishments, such as winning major battles, completing important quests, or achieving high levels of influence or reputation.
+Character Information: Display relevant information about the character, including age, father, mother, and children. This information can provide context and background for the character's lineage and relationships, contributing to the immersive storytelling experience.
+Item System: Implement an item system that allows the player's character to acquire and equip items throughout the quest. These items should provide attribute bonuses and potentially grant unique abilities. For example, a magical sword might increase the character's Martial attribute and grant a special combat move.
+
+Gameplay Loop:
+Action Selection: Allowing the player to choose actions for each attribute during their turn is a great way to engage them in decision-making and strategic planning. The number of actions available based on attribute values, items, titles, and advisors adds depth and customization to the gameplay.
+Attribute Value Impact: The player's attribute values directly influencing the number of actions they can take in a specific category makes sense and adds a sense of progression and specialization. It encourages players to develop their character's attributes strategically to have more options and effectiveness in certain areas.
+Dice Rolls for Success/Failure: Incorporating dice rolls to determine the success or failure of actions adds an element of chance and unpredictability to the gameplay. The idea of adjusting the number of dice based on difficulty and keeping the best roll is a good way to balance challenge and player agency. It also adds excitement and tension to the outcomes of the player's actions.
+Random Events: Introducing random events after the action phase adds variety and surprises to the gameplay. These events can present opportunities, challenges, or unexpected consequences based on the player's choices and actions. Random events can enhance replayability and keep the gameplay experience fresh and engaging.
+Feedback and Results: Providing the player with the results of their chosen actions after each turn is crucial for feedback and decision-making in subsequent turns. Clear feedback helps the player understand the impact of their choices and allows them to adjust their strategies accordingly.
+
+Warfare and Battles:
+Casus Belli and Debuffs: Requiring a Casus Belli (a valid reason for war) adds a layer of realism and strategy to declaring wars. Penalizing players who declare war without a valid reason through debuffs is a good way to discourage aggressive actions without consequences.
+Troop Recruitment and Management: Allowing players to recruit troops through martial actions and spending gold provides a clear resource management aspect. Additionally, equipping troops, assigning population to man them, and training them adds depth and customization to the military aspect of the game.
+Military Unit Attributes: Defining attributes for military units, such as type, size, discipline, moral and training level, allows for differentiation and specialization. These attributes can impact the effectiveness and performance of the units during battles.
+Battle Turns and Unit Actions: Introducing a special turn for battles where the player decides on actions for their units is a great way to simulate the tactical decision-making process. Players can assign actions based on the unit's attributes and their strategic goals. The dice rolls and the unit attributes can influence the outcome of the actions, adding an element of chance and skill to battles.
+Difficulty Settings: Implementing difficulty settings that affect the number of dice rolls and the outcome determination provides flexibility and allows players to adjust the level of challenge according to their preferences.
+
+Realm Expansion:
+Conquest via Casus Belli: Allowing the player to expand their realm through conquest using a Casus Belli provides a clear framework for engaging in warfare and territorial expansion. It adds strategic decision-making and consequences for aggressive actions.
+Colonization: Introducing the ability to colonize uninhabited places offers an alternative means of expansion. The requirement for resources and time investment adds a realistic element and provides a sense of accomplishment as the colony develops.
+Resource Investment: Requiring a significant amount of resources to establish a colony creates a sense of challenge and the need for careful resource management. It encourages players to strategize and prioritize their resource allocation to ensure successful colonization.
+Colony Events: Incorporating special events related to the colonies adds depth and variety to the colonization process. These events can introduce challenges, opportunities, or unexpected outcomes that affect the ease or difficulty of setting up the colony. They can also provide narrative elements and decision points for the player.
+Colony Rewards: Highlighting the valuable resources, unique items, and influence that established colonies can provide incentivizes players to invest in colonization. It rewards players for their efforts and encourages further exploration and expansion.
+
+Events:
+The division of events into random events and personal events in "King Maker" quest adds depth and variability to the gameplay. Here are some thoughts on these event categories:
+Random Events:
+Randomness and Consequences: Random events occurring based on dice rolls creates unpredictability and keeps the gameplay fresh. The fact that these events can have positive, negative, or neutral outcomes adds a sense of risk and reward. Having various ways to resolve the events based on their type provides strategic decision-making opportunities for the player.
+Event Resolution: Offering different ways to resolve random events based on their nature, such as waiting for time-based events or taking direct actions for specific events, adds depth and player agency. Allowing players to choose how to handle the events based on their available resources, attributes, and strategic goals enhances immersion and strategic planning.
+Mitigating Random Events: Providing actions that can mitigate or alleviate the impact of random events adds an additional layer of strategy. Players can make choices that preemptively prepare for or counteract potential negative events. For example, having enough granaries to mitigate the effects of a famine demonstrates resource management and planning.
+Personal Events:
+Player Agency and Character Development: Personal events tied to the player's actions and choices add a sense of agency and character development. They allow players to shape their character's story and experience bonuses, items, or temporary buffs as a result of their decisions. This adds depth to the role-playing aspect of the game and creates a more personalized experience.
+Strategic Benefits: Personal events that provide bonuses or buffs to certain actions offer players the opportunity to strategically plan their actions based on the temporary benefits they receive. This adds a layer of tactical decision-making, allowing players to optimize their gameplay and capitalize on their character's strengths.
+
+Technology and Research:
+Researching Technology: Players can engage in learning actions and construct buildings like the University to facilitate technological advancement. The random generation of technology through dice rolls, with bonuses based on the Learning attribute and university expansion, adds an element of chance and progression.
+Economic Technologies: Enhancements in resource production, construction efficiency, trade, and economic opportunities. They can directly impact resource output, construction time reduction, or unlock new buildings that promote economic growth.
+Military Technologies: Advancements in tactics, weaponry, and training to improve the combat capabilities of the realm. Researching military technologies can unlock new unit types, upgrade weapons, improve defensive structures, or provide strategic advantages in battles and sieges.
+Cultural Technologies: Developments in arts, literature, education, and societal advancements. They can affect morale, population growth, diplomatic relations, or offer unique cultural benefits. These technologies add depth to the realm's cultural identity and influence its interactions with other entities.
+Magical Technologies: The study and mastery of magical arts. They can introduce new spells, enhance magical abilities, create artifacts, or provide access to mystical resources. These technologies offer strategic advantages and options within the magical realm.
+Governance Technologies: Focus on administration, political systems, and efficiency of the realm. Researching governance technologies can improve income from taxes, stability, diplomatic options, or introduce new governance practices. They enhance the player's ability to effectively govern their realm.
+Exploration Technologies: Advancements in exploration, navigation, and discovery. Researching exploration technologies can unlock new regions, uncover hidden treasures, enhance scouting abilities, or improve navigation in uncharted territories. They can open up new opportunities for expansion and resource acquisition.
+
+Diplomacy and Alliance:
+Diplomatic Relations: Players will have the ability to form diplomatic relations with other kingdoms, represented by a value ranging from -100 to 100. This value reflects the overall relationship between the player's realm and the neighboring kingdom. Positive values indicate friendly relations, while negative values represent strained or hostile relations.
+Improving Relations: Players can engage in various actions to improve relations with other kingdoms. These actions can include arranging marriages between ruling families, engaging in trade agreements, diplomatic negotiations, providing gifts or aid, or resolving conflicts peacefully through dialogue. Each successful interaction will contribute to raising the diplomatic relationship value.
+Diplomatic Actions: As the diplomatic relationship improves, players will unlock a range of diplomatic actions they can undertake. These actions can include forming alliances, signing treaties, requesting military or economic support, negotiating trade deals, establishing non-aggression pacts, or seeking favors from the other kingdom. These actions can provide strategic advantages, resources, or cooperative benefits.
+Consequences of Poor Relations: If the diplomatic relationship deteriorates, negative consequences may arise. The other kingdom may impose an embargo on trade, declare war, support rival factions or kingdoms against the player, or engage in hostile actions. The player will need to carefully manage their diplomatic relations to avoid conflict and navigate the complexities of international relations.
+
+Intrigue and Espionage:
+External Intrigue (Spy Ring):
+Spy Ring Mechanics: Players can build and manage a spy ring with varying levels of power, represented on a scale of 0 to 100. Building a spy ring requires using intrigue actions and allocating resources to increase its size and power. However, the more resources allocated, the higher the risk of getting caught.
+Spy Ring Actions: With a well-established spy ring, players can engage in special actions such as stealing research, sabotage, gathering intelligence on diplomatic relations with other kingdoms, assassination attempts, or even manipulating other kingdoms to become puppets. The complexity and success of these actions depend on the capabilities and resources allocated to the spy ring.
+Risk of Exposure: When the player requests the spy ring to perform an action, there is a risk of being discovered. If the spies are detected, other kingdoms or factions may attempt to destroy the spy ring. The ease or difficulty of destroying the spy ring depends on how it was built—quickly and with significant resources allocated making it easier to destroy, or slowly and discreetly making it highly challenging to completely eliminate.
+Internal Intrigue:
+Protecting Against Espionage: Players can utilize internal intrigue to safeguard their realm against research, military, and diplomatic espionage attempts from other kingdoms. By investing in internal intrigue measures, such as counterintelligence, employing a skilled spymaster, and relying on the player's own intrigue attribute, they can increase their chances of detecting and preventing espionage.
+Preventing Assassination and Sabotage: Internal intrigue actions can focus on identifying and neutralizing potential threats to the player's realm, such as assassination attempts or sabotage efforts. Success in these endeavors depends on factors like the player's intrigue attribute, the effectiveness of the spymaster, and dice rolls to simulate the element of chance.
+AI Intrigue Actions: Other kingdoms will employ similar spy ring mechanics and may engage in espionage actions against the player's realm. These actions are more likely to occur when relations with other kingdoms are strained, or when there is an incentive for espionage (e.g., during wartime, when the player possesses superior technology). The player must be vigilant in protecting against such actions and countering them effectively.
+
+Religion and Piety:
+Church Relations and Influence:
+Relation: The player will have a relationship value with the Church, ranging from -100 to 100. This value represents the overall sentiment and cooperation between the player and the Church.
+Influence: The Church will also have an influence value, ranging from 0 to 100. This value represents the level of authority and impact the Church has within the realms, not to be confused with the player's realm resources.
+Piety Actions and Church Boons:
+Piety Actions: Players can utilize their Piety attribute to perform religious acts and make decisions within the realm. These actions can include praying for blessings or requesting specific boons from the Church.
+Church Boons: By requesting boons from the Church, players can receive benefits such as increased food production, the presence of priests in military units to boost morale, or other favorable outcomes. These boons should be balanced and tied to specific religious acts or decisions.
+Influence and Petitions:
+Influence Growth: As the player seeks more boons from the Church, the influence of the Church within the realms will grow. This means the Church will become more powerful and influential in shaping the realm's affairs.
+Petitions and Eroding Authority: With increased influence, the Church may begin to petition for additional rights or privileges. These requests may erode the player's authority, potentially leading to the establishment of entities like Templars or the Church requesting a percentage of taxes.
+Relation Impact: The player's actions and decisions will impact the relationship with the Church. If the Church becomes unhappy with the player, they may impose maluses or penalties on the realm. The severity of these maluses should scale with the Church's influence. If the Church is extremely displeased and highly influential, they may even attempt to remove the player from power.
+
+Quests:
+Quest Discovery:
+Special Requirements: Players will have to meet specific requirements or conditions to unlock or discover quests. These requirements can include reaching a certain level, acquiring certain items or titles, or having a specific relationship with a character or faction.
+Luck: Some quests may be discovered purely by chance or luck, providing an element of surprise and exploration in the game.
+Consecutive Personal Events:
+Quest Structure: Once a quest is initiated, it will consist of multiple consecutive personal events. These events form a narrative arc, with each event building upon the previous one.
+Multiple Actions: During each personal event, players will have multiple possible actions to choose from. These actions will shape the outcome of the quest and influence the rewards or consequences.
+Quest Outcomes:
+Choice-based Outcomes: The choices made by the player during the personal events will determine the overall outcome of the quest. The player can receive items, boons, maluses, or no rewards at all based on their decisions.
+Success and Failure: Quests can have both successful and failed outcomes. The player's choices, attributes, and dice rolls may contribute to the likelihood of success or failure.
+Retrying and Permanent Loss: Some quests may allow players to retry if they fail initially, giving them another chance to achieve success. However, other quests may have permanent consequences or be lost forever if failed, adding a sense of permanence and consequence to the player's decisions.
