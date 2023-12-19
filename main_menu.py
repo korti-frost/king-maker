@@ -1,5 +1,6 @@
 import pygame
 import sys
+import state
 
 def main_menu_buttons():
     # Get the size of the screen
@@ -16,23 +17,21 @@ def main_menu_buttons():
 
     return buttons, button_texts
 
-def main_menu_events(screen, buttons, button_texts):
+def main_menu_events(event, screen, buttons, button_texts):
     # Check for events
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-            return False, screen, buttons, button_texts
-        elif event.type == pygame.VIDEORESIZE:
-            # Window has been resized, so update the display surface to match the new size
-            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-            buttons, button_texts = main_menu_buttons()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            # Check if the mouse click was within any of the buttons
-            for i, button in enumerate(buttons):
-                if button.collidepoint(event.pos):
-                    print(f"{button_texts[i]} button clicked!")
-    return True, screen, buttons, button_texts
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    elif event.type == pygame.VIDEORESIZE:
+        # Window has been resized, so update the display surface to match the new size
+        screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+        buttons, button_texts = main_menu_buttons()
+    elif event.type == pygame.MOUSEBUTTONDOWN:
+        # Check if the mouse click was within any of the buttons
+        for i, button in enumerate(buttons):
+            if button.collidepoint(event.pos):
+                print(f"{button_texts[i]} button clicked!")
+    return screen, buttons, button_texts
 
 def main_menu_draw(screen, buttons, button_texts):
     # Draw the background
@@ -56,19 +55,21 @@ def main_menu_draw(screen, buttons, button_texts):
 
         # Draw the text on the screen
         screen.blit(text_surface, text_pos)
+        
+class MainMenuState(state.State):
+    def __init__(self, screen):
+        self.screen = screen
+        # Initialize the main menu here
+        # Create buttons
+        self.buttons, self.button_texts = main_menu_buttons()
 
-    pygame.display.flip()  # Update the display
+    def handle_event(self, event):
+        # Handle events for the main menu here
+        self.screen, self.buttons, self.button_texts = main_menu_events(event, self.screen, self.buttons, self.button_texts)
 
-def main_menu(screen):
-    # Create buttons
-    buttons, button_texts = main_menu_buttons()
-
-    # Main menu loop
-    running = True
-    while running:
-
-        # Check for events
-        running, screen, buttons, button_texts = main_menu_events(screen, buttons, button_texts)
-
-        # Draw the background and buttons
-        main_menu_draw(screen, buttons, button_texts)
+    #def update(self):
+        # Update the main menu here
+    
+    def draw(self):
+        # Draw the main menu here
+        main_menu_draw(self.screen, self.buttons, self.button_texts)
