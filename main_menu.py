@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 def main_menu_buttons():
     # Get the size of the screen
@@ -19,6 +20,8 @@ def main_menu_events(screen, buttons, button_texts):
     # Check for events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
             return False, screen, buttons, button_texts
         elif event.type == pygame.VIDEORESIZE:
             # Window has been resized, so update the display surface to match the new size
