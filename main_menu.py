@@ -29,6 +29,9 @@ def main_menu_events(event, buttons, button_texts):
                 print(f"{button_texts[i]} button clicked!")
                 if button_texts[i] == "OPTIONS":
                     return "Options"
+                if button_texts[i] == "EXIT":
+                    pygame.quit()
+                    sys.exit()
     return None
 
 def main_menu_draw(screen, buttons, button_texts):

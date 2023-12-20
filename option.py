@@ -43,7 +43,7 @@ def option_buttons():
     total_button_height = 4 * button_height + 3 * button_margin  # Total height of all buttons and margins
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
     buttons = [pygame.Rect(20, button_y_start + i * (button_height + button_margin), button_width, button_height) for i in range(3)]
-    button_texts = ["FULLSCREEN", "SAVE", "RETURN"]
+    button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
 
     return buttons, button_texts
 
@@ -57,13 +57,20 @@ class Settings:
     def save(self):
         # Save the settings to a file
         with open('settings.json', 'w') as f:
-            json.dump(self.__dict__, f)
+            json.dump({
+                'screen_size': self.screen_size,
+                'fullscreen': self.fullscreen,
+                'sound': self.sound
+        }, f)
 
     def load(self):
         # Load the settings from a file
         try:
             with open('settings.json', 'r') as f:
-                self.__dict__ = json.load(f)
+                data = json.load(f)
+                self.screen_size = data.get('screen_size', self.screen_size)
+                self.fullscreen = data.get('fullscreen', self.fullscreen)
+                self.sound = data.get('sound', self.sound)
         except FileNotFoundError:
             pass  # If the settings file doesn't exist, just use the default settings
 
@@ -82,7 +89,7 @@ class OptionState(Settings):
                     if self.button_texts[i] == 'FULLSCREEN':
                         print(f"{self.button_texts[i]} button clicked!")
                         self.settings.fullscreen = not self.settings.fullscreen
-                    if self.button_texts[i] == 'SAVE':
+                    if self.button_texts[i] == 'APPLY':
                         print(f"{self.button_texts[i]} button clicked!")
                         apply_settings(self.settings)
                         # Save the settings
@@ -90,7 +97,7 @@ class OptionState(Settings):
                     if self.button_texts[i] == 'RETURN':
                         print(f"{self.button_texts[i]} button clicked!")
                         return "MainMenu"
-
+                    
     def update(self):
         # Update option here
         pass
