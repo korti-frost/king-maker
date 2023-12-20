@@ -40,10 +40,17 @@ def option_buttons():
     button_width = 200
     button_height = 50
     button_margin = 20  # Space between buttons
-    total_button_height = 4 * button_height + 3 * button_margin  # Total height of all buttons and margins
+    total_button_width = 4 * button_width + 3 * button_margin  # Total width of all buttons and margins
+    button_x_start = infoObject.current_w / 2 - total_button_width / 2 + button_margin # Start x-position so buttons are centered
+    total_button_height = 7 * button_height + 6 * button_margin  # Total height of all buttons and margins
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
-    buttons = [pygame.Rect(20, button_y_start + i * (button_height + button_margin), button_width, button_height) for i in range(3)]
-    button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
+
+    buttons = [pygame.Rect(button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height) for i in range(4)]
+    button_texts = ["800x600", "1024x768", "1280x720", "1920x1080"]
+
+    # Overlap "FULLSCREEN" with the first button in the horizontal list
+    buttons.extend([pygame.Rect(button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height) for i in range(3)])
+    button_texts.extend(["FULLSCREEN", "APPLY", "RETURN"])
 
     return buttons, button_texts
 
@@ -86,6 +93,18 @@ class OptionState(Settings):
             for i, button in enumerate(self.buttons):
                 if button.collidepoint(event.pos):
                     # Change the corresponding setting
+                    if self.button_texts[i] == '800x600':
+                        print(f"{self.button_texts[i]} button clicked!")
+                        self.settings.screen_size = (800, 600)
+                    if self.button_texts[i] == '1024x768':
+                        print(f"{self.button_texts[i]} button clicked!")
+                        self.settings.screen_size = (1024, 768)
+                    if self.button_texts[i] == '1280x720':
+                        print(f"{self.button_texts[i]} button clicked!")
+                        self.settings.screen_size = (1280, 720)
+                    if self.button_texts[i] == '1920x1080':
+                        print(f"{self.button_texts[i]} button clicked!")
+                        self.settings.screen_size = (1920, 1080)
                     if self.button_texts[i] == 'FULLSCREEN':
                         print(f"{self.button_texts[i]} button clicked!")
                         self.settings.fullscreen = not self.settings.fullscreen
