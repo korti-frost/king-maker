@@ -17,21 +17,19 @@ def main_menu_buttons():
 
     return buttons, button_texts
 
-def main_menu_events(event, screen, buttons, button_texts):
+def main_menu_events(event, buttons, button_texts):
     # Check for events
     if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()
-    elif event.type == pygame.VIDEORESIZE:
-        # Window has been resized, so update the display surface to match the new size
-        screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-        buttons, button_texts = main_menu_buttons()
     elif event.type == pygame.MOUSEBUTTONDOWN:
         # Check if the mouse click was within any of the buttons
         for i, button in enumerate(buttons):
             if button.collidepoint(event.pos):
                 print(f"{button_texts[i]} button clicked!")
-    return screen, buttons, button_texts
+                if button_texts[i] == "OPTIONS":
+                    return "Options"
+    return None
 
 def main_menu_draw(screen, buttons, button_texts):
     # Draw the background
@@ -65,7 +63,8 @@ class MainMenuState(state.State):
 
     def handle_event(self, event):
         # Handle events for the main menu here
-        self.screen, self.buttons, self.button_texts = main_menu_events(event, self.screen, self.buttons, self.button_texts)
+        new_state = main_menu_events(event, self.buttons, self.button_texts)
+        return new_state
 
     #def update(self):
         # Update the main menu here

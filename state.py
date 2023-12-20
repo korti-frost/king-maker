@@ -17,7 +17,8 @@ class StateManager:
 
     def handle_event(self, event):
         if self.state is not None:
-            self.state.handle_event(event)
+            new_state = self.state.handle_event(event)
+            return new_state
 
     def update(self):
         if self.state is not None:
