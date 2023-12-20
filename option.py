@@ -45,10 +45,11 @@ def option_buttons():
     total_button_height = 7 * button_height + 6 * button_margin  # Total height of all buttons and margins
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
 
+    # Create the buttons For Screen Size
     buttons = [pygame.Rect(button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height) for i in range(4)]
-    button_texts = ["800x600", "1024x768", "1280x720", "1920x1080"]
+    button_texts = ["840x600", "1024x768", "1280x720", "1920x1080"]
 
-    # Overlap "FULLSCREEN" with the first button in the horizontal list
+    # Create the buttons For Fullscreen, Apply, and Return
     buttons.extend([pygame.Rect(button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height) for i in range(3)])
     button_texts.extend(["FULLSCREEN", "APPLY", "RETURN"])
 
@@ -57,7 +58,7 @@ def option_buttons():
 class Settings:
     def __init__(self):
         self.screen = None
-        self.screen_size = (800, 600)  # Default screen size
+        self.screen_size = (840, 600)  # Default screen size
         self.fullscreen = False
         self.sound = True
 
@@ -93,9 +94,9 @@ class OptionState(Settings):
             for i, button in enumerate(self.buttons):
                 if button.collidepoint(event.pos):
                     # Change the corresponding setting
-                    if self.button_texts[i] == '800x600':
+                    if self.button_texts[i] == '840x600':
                         print(f"{self.button_texts[i]} button clicked!")
-                        self.settings.screen_size = (800, 600)
+                        self.settings.screen_size = (840, 600)
                     if self.button_texts[i] == '1024x768':
                         print(f"{self.button_texts[i]} button clicked!")
                         self.settings.screen_size = (1024, 768)
@@ -113,6 +114,9 @@ class OptionState(Settings):
                         apply_settings(self.settings)
                         # Save the settings
                         self.settings.save()
+                        # Update the screen
+                        pygame.display.flip()
+                        option_draw(self.settings.screen, self.buttons, self.button_texts)
                     if self.button_texts[i] == 'RETURN':
                         print(f"{self.button_texts[i]} button clicked!")
                         return "MainMenu"
