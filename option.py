@@ -1,6 +1,6 @@
 import pygame
-import state
 import json
+from button import Button
 
 def apply_settings(settings):
     # Apply the settings
@@ -9,30 +9,7 @@ def apply_settings(settings):
     else:
         settings.screen = pygame.display.set_mode(settings.screen_size)
 
-def option_draw(screen, buttons, button_texts):
-    # Draw the background
-    screen.fill((0, 0, 0))
-
-    # Create a font object
-    font = pygame.font.Font(None, 32)  # You can adjust the size as needed
-
-    # Draw the buttons and their text
-    for i, button in enumerate(buttons):
-        pygame.draw.rect(screen, (255, 0, 0), button)
-
-        # Render the text
-        text_surface = font.render(button_texts[i], True, (255, 255, 255))  # White text
-
-        # Get the center of the button
-        button_center = (button.x + button.width / 2, button.y + button.height / 2)
-
-        # Get the top-left position of the text surface so it's centered on the button
-        text_pos = (button_center[0] - text_surface.get_width() / 2, button_center[1] - text_surface.get_height() / 2)
-
-        # Draw the text on the screen
-        screen.blit(text_surface, text_pos)
-
-def option_buttons():
+def option_buttons(screen):
     # Get the size of the screen
     infoObject = pygame.display.Info()
 
@@ -46,14 +23,14 @@ def option_buttons():
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
 
     # Create the buttons For Screen Size
-    buttons = [pygame.Rect(button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height) for i in range(4)]
     button_texts = ["840x600", "1024x768", "1280x720", "1920x1080"]
+    buttons = [Button(screen, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text) for i, text in enumerate(button_texts)]
 
     # Create the buttons For Fullscreen, Apply, and Return
-    buttons.extend([pygame.Rect(button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height) for i in range(3)])
-    button_texts.extend(["FULLSCREEN", "APPLY", "RETURN"])
+    button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
+    buttons.extend([Button(screen, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(button_texts)])
 
-    return buttons, button_texts
+    return buttons
 
 class Settings:
     def __init__(self):
@@ -86,39 +63,39 @@ class OptionState(Settings):
     def __init__(self, settings):
         self.settings = settings
         # Initialize buttons, etc.
-        self.buttons, self.button_texts = option_buttons()
+        self.buttons= option_buttons(self.settings.screen)
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Check if the mouse click was within any of the buttons
-            for i, button in enumerate(self.buttons):
-                if button.collidepoint(event.pos):
+            for button in self.buttons:
+                if button.button.collidepoint(event.pos):
                     # Change the corresponding setting
-                    if self.button_texts[i] == '840x600':
-                        print(f"{self.button_texts[i]} button clicked!")
+                    if button.text == '840x600':
+                        print(f"{button.text} button clicked!")
                         self.settings.screen_size = (840, 600)
-                    if self.button_texts[i] == '1024x768':
-                        print(f"{self.button_texts[i]} button clicked!")
+                    if button.text == '1024x768':
+                        print(f"{button.text} button clicked!")
                         self.settings.screen_size = (1024, 768)
-                    if self.button_texts[i] == '1280x720':
-                        print(f"{self.button_texts[i]} button clicked!")
+                    if button.text == '1280x720':
+                        print(f"{button.text} button clicked!")
                         self.settings.screen_size = (1280, 720)
-                    if self.button_texts[i] == '1920x1080':
-                        print(f"{self.button_texts[i]} button clicked!")
+                    if button.text == '1920x1080':
+                        print(f"{button.text} button clicked!")
                         self.settings.screen_size = (1920, 1080)
-                    if self.button_texts[i] == 'FULLSCREEN':
-                        print(f"{self.button_texts[i]} button clicked!")
+                    if button.text == 'FULLSCREEN':
+                        print(f"{button.text} button clicked!")
                         self.settings.fullscreen = not self.settings.fullscreen
-                    if self.button_texts[i] == 'APPLY':
-                        print(f"{self.button_texts[i]} button clicked!")
+                    if button.text == 'APPLY':
+                        print(f"{button.text} button clicked!")
                         apply_settings(self.settings)
                         # Save the settings
                         self.settings.save()
                         # Update the screen
                         pygame.display.flip()
-                        option_draw(self.settings.screen, self.buttons, self.button_texts)
-                    if self.button_texts[i] == 'RETURN':
-                        print(f"{self.button_texts[i]} button clicked!")
+                        self.draw()
+                    if button.text == 'RETURN':
+                        print(f"{button.text} button clicked!")
                         return "MainMenu"
                     
     def update(self):
@@ -126,5 +103,9 @@ class OptionState(Settings):
         pass
     
     def draw(self):
-        # Draw option here
-        option_draw(self.settings.screen, self.buttons, self.button_texts)
+        # Draw the background
+        self.settings.screen.fill((0, 0, 0))
+
+        # Draw the buttons and their text
+        for button in self.buttons:
+            button.draw()
