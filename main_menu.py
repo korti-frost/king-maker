@@ -1,8 +1,9 @@
 import pygame
 import sys
 import state
+from button import Button
 
-def main_menu_buttons():
+def main_menu_buttons(screen):
     # Get the size of the screen
     infoObject = pygame.display.Info()
 
@@ -12,66 +13,45 @@ def main_menu_buttons():
     button_margin = 20  # Space between buttons
     total_button_height = 4 * button_height + 3 * button_margin  # Total height of all buttons and margins
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
-    buttons = [pygame.Rect(20, button_y_start + i * (button_height + button_margin), button_width, button_height) for i in range(4)]
     button_texts = ["START", "LOAD", "OPTIONS", "EXIT"]
 
-    return buttons, button_texts
+    buttons = [Button(screen, 20, button_y_start + i * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(button_texts)]
 
-def main_menu_events(event, buttons, button_texts):
+    return buttons
+
+def main_menu_events(event, buttons):
     # Check for events
     if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()
     elif event.type == pygame.MOUSEBUTTONDOWN:
         # Check if the mouse click was within any of the buttons
-        for i, button in enumerate(buttons):
-            if button.collidepoint(event.pos):
-                print(f"{button_texts[i]} button clicked!")
-                if button_texts[i] == "OPTIONS":
+        for button in buttons:
+            if button.button.collidepoint(event.pos):
+                print(f"{button.text} button clicked!")
+                if button.text == "OPTIONS":
                     return "Options"
-                if button_texts[i] == "EXIT":
+                if button.text == "EXIT":
                     pygame.quit()
                     sys.exit()
     return None
-
-def main_menu_draw(screen, buttons, button_texts):
-    # Draw the background
-    screen.fill((0, 0, 0))
-
-    # Create a font object
-    font = pygame.font.Font(None, 32)  # You can adjust the size as needed
-
-    # Draw the buttons and their text
-    for i, button in enumerate(buttons):
-        pygame.draw.rect(screen, (255, 0, 0), button)
-
-        # Render the text
-        text_surface = font.render(button_texts[i], True, (255, 255, 255))  # White text
-
-        # Get the center of the button
-        button_center = (button.x + button.width / 2, button.y + button.height / 2)
-
-        # Get the top-left position of the text surface so it's centered on the button
-        text_pos = (button_center[0] - text_surface.get_width() / 2, button_center[1] - text_surface.get_height() / 2)
-
-        # Draw the text on the screen
-        screen.blit(text_surface, text_pos)
-        
+    
 class MainMenuState(state.State):
     def __init__(self, screen):
         self.screen = screen
         # Initialize the main menu here
         # Create buttons
-        self.buttons, self.button_texts = main_menu_buttons()
+        self.buttons = main_menu_buttons(screen)
 
     def handle_event(self, event):
         # Handle events for the main menu here
-        new_state = main_menu_events(event, self.buttons, self.button_texts)
+        new_state = main_menu_events(event, self.buttons)
         return new_state
-
-    #def update(self):
-        # Update the main menu here
     
     def draw(self):
-        # Draw the main menu here
-        main_menu_draw(self.screen, self.buttons, self.button_texts)
+        # Draw the background
+        self.screen.fill((0, 0, 0))
+
+        # Draw the buttons and their text
+        for button in self.buttons:
+            button.draw()
