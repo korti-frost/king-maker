@@ -2,6 +2,7 @@ import pygame
 import sys
 import state
 from button import Button
+import sound
 
 def main_menu_buttons(screen):
     # Get the size of the screen
@@ -60,6 +61,8 @@ class MainMenuState(state.State):
         # Resize the background image
         self.background = pygame.transform.scale(self.background, (infoObject.current_w, infoObject.current_h))
 
+        # Play music
+        sound.sound_manager.play_music('main_menu')
 
     def handle_event(self, event):
         # Handle events for the main menu here

@@ -5,6 +5,7 @@ from state import *
 import state
 from option import *
 import option
+from sound import *
 
 def change_state(state_manager, new_state):
     if new_state == "Options":
@@ -19,6 +20,9 @@ pygame.init()
 settings = Settings()
 settings.load()
 apply_settings(settings)
+
+# Create the sound manager and load the sounds
+sound_manager = SoundManager()
 
 # Create the state manager and set the initial state to MainMenuState
 state_manager = StateManager()
