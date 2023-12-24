@@ -24,12 +24,12 @@ def option_buttons(screen):
 
     # Create the buttons For Screen Size
     button_texts = ["840x600", "1024x768", "1280x720", "1920x1080"]
-    buttons = [Button(screen, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text) for i, text in enumerate(button_texts)]
+    buttons = [Button(screen, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
 
     # Create the buttons For Fullscreen, Apply, and Return
     button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
-    buttons.extend([Button(screen, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(button_texts)])
-
+    buttons.extend([Button(screen, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)])
+    
     return buttons
 
 class Settings:
@@ -77,6 +77,9 @@ class OptionState(Settings):
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
+            for button in self.buttons:
+                button.handle_event(event)
+        elif event.type == pygame.MOUSEBUTTONUP:
             # Check if the mouse click was within any of the buttons
             for button in self.buttons:
                 if button.button.collidepoint(event.pos):

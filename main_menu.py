@@ -15,7 +15,7 @@ def main_menu_buttons(screen):
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
     button_texts = ["START", "LOAD", "OPTIONS", "EXIT"]
 
-    buttons = [Button(screen, 50, button_y_start + i * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(button_texts)]
+    buttons = [Button(screen, 50, button_y_start + i * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
 
     return buttons
 
@@ -25,13 +25,21 @@ def main_menu_events(event, buttons):
         pygame.quit()
         sys.exit()
     elif event.type == pygame.MOUSEBUTTONDOWN:
+        for button in buttons:
+            button.handle_event(event)
+    elif event.type == pygame.MOUSEBUTTONUP:
         # Check if the mouse click was within any of the buttons
         for button in buttons:
             if button.button.collidepoint(event.pos):
-                print(f"{button.text} button clicked!")
+                if button.text == "START":
+                    button.handle_event(event)
+                if button.text == "LOAD":
+                    button.handle_event(event)
                 if button.text == "OPTIONS":
+                    button.handle_event(event)
                     return "Options"
                 if button.text == "EXIT":
+                    button.handle_event(event)
                     pygame.quit()
                     sys.exit()
     return None
