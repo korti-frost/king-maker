@@ -65,6 +65,16 @@ class OptionState(Settings):
         # Initialize buttons, etc.
         self.buttons= option_buttons(self.settings.screen)
 
+        # Load the background image
+        self.background = pygame.image.load(r'data\images\background\Settings_desk.png')
+
+        # Get the size of the screen
+        infoObject = pygame.display.Info()
+
+        # Resize the background image
+        self.background = pygame.transform.scale(self.background, (infoObject.current_w, infoObject.current_h))
+
+
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Check if the mouse click was within any of the buttons
@@ -104,7 +114,7 @@ class OptionState(Settings):
     
     def draw(self):
         # Draw the background
-        self.settings.screen.fill((0, 0, 0))
+        self.settings.screen.blit(self.background, (0, 0))
 
         # Draw the buttons and their text
         for button in self.buttons:

@@ -15,7 +15,7 @@ def main_menu_buttons(screen):
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
     button_texts = ["START", "LOAD", "OPTIONS", "EXIT"]
 
-    buttons = [Button(screen, 20, button_y_start + i * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(button_texts)]
+    buttons = [Button(screen, 50, button_y_start + i * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(button_texts)]
 
     return buttons
 
@@ -43,6 +43,16 @@ class MainMenuState(state.State):
         # Create buttons
         self.buttons = main_menu_buttons(screen)
 
+        # Load the background image
+        self.background = pygame.image.load(r'data\images\background\Castle.png')
+
+        # Get the size of the screen
+        infoObject = pygame.display.Info()
+
+        # Resize the background image
+        self.background = pygame.transform.scale(self.background, (infoObject.current_w, infoObject.current_h))
+
+
     def handle_event(self, event):
         # Handle events for the main menu here
         new_state = main_menu_events(event, self.buttons)
@@ -50,7 +60,7 @@ class MainMenuState(state.State):
     
     def draw(self):
         # Draw the background
-        self.screen.fill((0, 0, 0))
+        self.screen.blit(self.background, (0, 0))
 
         # Draw the buttons and their text
         for button in self.buttons:
