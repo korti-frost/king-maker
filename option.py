@@ -9,7 +9,7 @@ def apply_settings(settings):
     else:
         settings.screen = pygame.display.set_mode(settings.screen_size)
 
-def option_buttons(screen):
+def option_buttons(screen, sound_manager):
     # Get the size of the screen
     infoObject = pygame.display.Info()
 
@@ -24,11 +24,11 @@ def option_buttons(screen):
 
     # Create the buttons For Screen Size
     button_texts = ["840x600", "1024x768", "1280x720", "1920x1080"]
-    buttons = [Button(screen, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
+    buttons = [Button(screen, sound_manager, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
 
     # Create the buttons For Fullscreen, Apply, and Return
     button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
-    buttons.extend([Button(screen, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)])
+    buttons.extend([Button(screen, sound_manager, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)])
     
     return buttons
 
@@ -60,10 +60,11 @@ class Settings:
             pass  # If the settings file doesn't exist, just use the default settings
 
 class OptionState(Settings):
-    def __init__(self, settings):
+    def __init__(self, settings, sound_manager):
         self.settings = settings
+        self.sound_manager = sound_manager
         # Initialize buttons, etc.
-        self.buttons= option_buttons(self.settings.screen)
+        self.buttons= option_buttons(self.settings.screen, self.sound_manager)
 
         # Load the background image
         self.background = pygame.image.load(r'data\images\background\Settings_desk.png')
@@ -84,23 +85,17 @@ class OptionState(Settings):
             for button in self.buttons:
                 if button.button.collidepoint(event.pos):
                     # Change the corresponding setting
-                    if button.text == '840x600':
-                        print(f"{button.text} button clicked!")
+                    if button.text == '840x600': 
                         self.settings.screen_size = (840, 600)
-                    if button.text == '1024x768':
-                        print(f"{button.text} button clicked!")
+                    if button.text == '1024x768':  
                         self.settings.screen_size = (1024, 768)
-                    if button.text == '1280x720':
-                        print(f"{button.text} button clicked!")
+                    if button.text == '1280x720':  
                         self.settings.screen_size = (1280, 720)
-                    if button.text == '1920x1080':
-                        print(f"{button.text} button clicked!")
+                    if button.text == '1920x1080':  
                         self.settings.screen_size = (1920, 1080)
-                    if button.text == 'FULLSCREEN':
-                        print(f"{button.text} button clicked!")
+                    if button.text == 'FULLSCREEN':   
                         self.settings.fullscreen = not self.settings.fullscreen
                     if button.text == 'APPLY':
-                        print(f"{button.text} button clicked!")
                         apply_settings(self.settings)
                         # Save the settings
                         self.settings.save()
@@ -108,7 +103,6 @@ class OptionState(Settings):
                         pygame.display.flip()
                         self.draw()
                     if button.text == 'RETURN':
-                        print(f"{button.text} button clicked!")
                         return "MainMenu"
                     
     def update(self):

@@ -9,11 +9,13 @@ class State:
         pass
 
 class StateManager:
-    def __init__(self):
+    def __init__(self, settings, sound_manager):
         self.state = None
+        self.settings = settings
+        self.sound_manager = sound_manager
 
     def set_state(self, state):
-        self.state = state
+        self.state = state(self.settings, self.sound_manager)
 
     def handle_event(self, event):
         if self.state is not None:

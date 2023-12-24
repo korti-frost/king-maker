@@ -1,7 +1,7 @@
 import pygame
 
 class Button():
-    def __init__(self, screen, x, y, width, height, text, image_path=None, image_path_clicked=None, image_path_frame=None, button_color=(255, 0, 0), text_color=(255, 255, 255)):
+    def __init__(self, screen, sound_manager, x, y, width, height, text, image_path=None, image_path_clicked=None, image_path_frame=None, button_color=(255, 0, 0), text_color=(255, 255, 255)):
         # Initialize the button
         self.screen = screen
         self.x = x
@@ -15,6 +15,8 @@ class Button():
         self.text_color = text_color
         self.font = pygame.font.Font(None, 32)
         self.render_text()
+
+        self.sound_manager = sound_manager
 
         # Load the button images if provided
         if image_path is not None:
@@ -46,9 +48,10 @@ class Button():
 
     def handle_event(self, event):
         # Check if the button was clicked
-        print(f"{self.text} button clicked!")
         if event.type == pygame.MOUSEBUTTONDOWN and self.button.collidepoint(pygame.mouse.get_pos()):
             self.clicked = True
+            print(f"{self.text} button clicked!")
+            self.sound_manager.play_sound('button_click')
         else:
             self.clicked = False
 
