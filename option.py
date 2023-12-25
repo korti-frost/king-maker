@@ -27,9 +27,13 @@ def option_buttons(screen, sound_manager):
     buttons = [Button(screen, sound_manager, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
 
     # Create the buttons For Fullscreen, Apply, and Return
-    button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
+    #button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
+    #buttons.extend([Button(screen, sound_manager, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]) 
+
+    # Create the buttons For Fullscreen, Apply, and Return
+    button_texts = ["FULLSCREEN" + str(int(sound_manager.volume_music * 100)), "APPLY", "RETURN"]
     buttons.extend([Button(screen, sound_manager, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)])
-    
+
     return buttons
 
 class Settings:
