@@ -34,6 +34,10 @@ def option_buttons(screen, sound_manager):
     # Create the actual buttons closer to the middle of the screen
     buttons = [Button(screen, sound_manager, infoObject.current_w / 2 + 50, button_y_start + i * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
     
+    # Create the Sound Slider Button
+    sound_slider_button = SliderButton(screen, sound_manager, infoObject.current_w / 2 + 50, button_y_start + len(button_texts) * (button_height + button_margin), button_width, button_height, sound_manager.volume_sounds, 0, 1, 0.1)
+    buttons.append(sound_slider_button)
+
     # Create the Apply and Return buttons at the bottom of the screen
     bottom_button_texts = ["APPLY", "RETURN"]
     bottom_buttons = [Button(screen, sound_manager, infoObject.current_w / 2 - button_width - 50 if text == "APPLY" else infoObject.current_w / 2 + 50, infoObject.current_h - button_height - 50, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for text in bottom_button_texts]

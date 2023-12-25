@@ -10,10 +10,13 @@ class SliderButton():
         self.step = step
         self.x = x
         self.y = y
+        self.sound_manager = sound_manager
 
         # Create the increase and decrease buttons
         self.increase_button = Button(screen, sound_manager, x + width, y, width, height, "+")
         self.decrease_button = Button(screen, sound_manager, x - width, y, width, height, "-")
+
+        self.button = self.increase_button.button
 
         # Initialize the text
         self.text = str(self.variable)
@@ -23,10 +26,13 @@ class SliderButton():
 
     def handle_event(self, event):
         # Handle the button events and update the variable
-        if self.increase_button.handle_event(event) and self.variable < self.max_val:
+        if self.increase_button.button.collidepoint(event.pos) and self.variable < self.max_val:
             self.variable += self.step
-        elif self.decrease_button.handle_event(event) and self.variable > self.min_val:
+            print(self.sound_manager.volume_sounds)
+            self.sound_manager.set_sound_volume(self.variable)
+        elif self.decrease_button.button.collidepoint(event.pos) and self.variable > self.min_val:
             self.variable -= self.step
+            self.sound_manager.set_sound_volume(self.variable)
 
         # Update the text
         self.text = str(self.variable)
@@ -37,3 +43,5 @@ class SliderButton():
         self.increase_button.draw()
         self.decrease_button.draw()
         self.screen.blit(self.text_surface, (self.x, self.y))
+
+
