@@ -1,6 +1,7 @@
 import pygame
 import json
 from button import Button
+from button2 import SliderButton
 
 def apply_settings(settings):
     # Apply the settings
@@ -14,25 +15,35 @@ def option_buttons(screen, sound_manager):
     infoObject = pygame.display.Info()
 
     # Create buttons
-    button_width = 200
+    button_width = 120
     button_height = 50
     button_margin = 20  # Space between buttons
-    total_button_width = 4 * button_width + 3 * button_margin  # Total width of all buttons and margins
-    button_x_start = infoObject.current_w / 2 - total_button_width / 2 + button_margin # Start x-position so buttons are centered
-    total_button_height = 7 * button_height + 6 * button_margin  # Total height of all buttons and margins
+    total_button_height = 9 * button_height + 8 * button_margin  # Total height of all buttons and margins
     button_y_start = infoObject.current_h / 2 - total_button_height / 2  # Start y-position so buttons are centered
 
-    # Create the buttons For Screen Size
-    button_texts = ["840x600", "1024x768", "1280x720", "1920x1080"]
-    buttons = [Button(screen, sound_manager, button_x_start + i * (button_width + button_margin), button_y_start, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
+    explication_texts = ["Screen Size: ", "Fullscreen: "]
+    button_texts = ["1920x1080", "FULLSCREEN"]
 
-    # Create the buttons For Fullscreen, Apply, and Return
-    #button_texts = ["FULLSCREEN", "APPLY", "RETURN"]
-    #buttons.extend([Button(screen, sound_manager, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]) 
+    # Create the text buttons closer to the middle of the screen
+    text_buttons = [Button(screen, sound_manager, infoObject.current_w / 2 - button_width - 50, button_y_start + i * (button_height + button_margin), button_width, button_height, text) for i, text in enumerate(explication_texts)]
 
-    # Create the buttons For Fullscreen, Apply, and Return
-    button_texts = ["FULLSCREEN" + str(int(sound_manager.volume_music * 100)), "APPLY", "RETURN"]
-    buttons.extend([Button(screen, sound_manager, button_x_start, button_y_start + (i+1) * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)])
+    # Create the extra buttons for Screen Size
+    extra_button_texts = ["840x600", "1024x768", "1280x720"]
+    extra_buttons = [Button(screen, sound_manager, infoObject.current_w / 2 + 50 + (j+1) * (button_width + button_margin), button_y_start, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for j, text in enumerate(extra_button_texts)]
+
+    # Create the actual buttons closer to the middle of the screen
+    buttons = [Button(screen, sound_manager, infoObject.current_w / 2 + 50, button_y_start + i * (button_height + button_margin), button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for i, text in enumerate(button_texts)]
+    
+    # Create the Apply and Return buttons at the bottom of the screen
+    bottom_button_texts = ["APPLY", "RETURN"]
+    bottom_buttons = [Button(screen, sound_manager, infoObject.current_w / 2 - button_width - 50 if text == "APPLY" else infoObject.current_w / 2 + 50, infoObject.current_h - button_height - 50, button_width, button_height, text, r'data\images\buttons\Button_middle_red.png', r'data\images\buttons\Button_middle.png', r'data\images\buttons\Button_middle_Fr.png') for text in bottom_button_texts]
+
+    # Add the extra buttons and the bottom buttons to the buttons list
+    buttons.extend(extra_buttons)
+    buttons.extend(bottom_buttons)
+
+    # Add the text buttons and the actual buttons to the same list
+    buttons.extend(text_buttons)
 
     return buttons
 
